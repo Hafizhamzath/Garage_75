@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import API from "../services/api"; // Use the API instance
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -9,16 +9,18 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      API.get("/users/me")
-        .then((res) => setUser(res.data))
-        .catch(() => logout());
+      axios.get("https://garage-75.onrender.com/api/users/me", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((res) => setUser(res.data))
+      .catch(() => logout());
     }
   }, [token]);
 
   const login = async (email, password) => {
-    const res = await API.post("/users/login", { email, password });
+    const res = await axios.post("https://garage-75.onrender.com/api/users/login", { email, password });
     setToken(res.data.token);
-    setUser(res.data); // Backend returns req.user, not res.data.user
+    setUser(res.data.user);
     localStorage.setItem("token", res.data.token);
   };
 
