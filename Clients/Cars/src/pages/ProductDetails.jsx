@@ -11,7 +11,7 @@ function ProductDetails() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/products/${id}`)
+    fetch(`https://garage-75.onrender.com/api/products/${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {

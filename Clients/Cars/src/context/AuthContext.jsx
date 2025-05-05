@@ -9,7 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      axios.get("http://localhost:5000/api/users/me", {
+      axios.get("https://garage-75.onrender.com/api/users/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setUser(res.data))
@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   }, [token]);
 
   const login = async (email, password) => {
-    const res = await axios.post("http://localhost:5000/api/users/login", { email, password });
+    const res = await axios.post("https://garage-75.onrender.com/api/users/login", { email, password });
     setToken(res.data.token);
     setUser(res.data.user);
     localStorage.setItem("token", res.data.token);

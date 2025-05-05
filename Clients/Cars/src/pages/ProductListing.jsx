@@ -12,7 +12,7 @@ function ProductListing() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch("https://garage-75.onrender.com/api/products")
       .then((response) => response.json())
       .then((data) => {
         setCars(data);
