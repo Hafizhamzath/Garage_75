@@ -15,11 +15,11 @@ API.interceptors.request.use((config) => {
 
 // Auth API Calls
 export const registerUser = async (userData) => {
-  return API.post("/users/register", userData);
+  return API.post("/api/users/register", userData);
 };
 
 export const loginUser = async (userData) => {
-  return API.post("/users/login", userData);
+  return API.post("/api/users/login", userData);
 };
 
 export default API;
